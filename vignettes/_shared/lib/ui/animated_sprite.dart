@@ -1,19 +1,19 @@
 import 'package:flutter/widgets.dart';
-
 import 'package:shared/ui/sprite.dart';
 
 class AnimatedSprite extends AnimatedWidget {
   final ImageProvider image;
   final int frameWidth;
-  final int frameHeight;
+  final int? frameHeight;
 
-  AnimatedSprite({
-    Key key,
-    @required this.image,
-    @required this.frameWidth,
+  const AnimatedSprite({
+    super.key,
+    required super.listenable,
+    required this.image,
+    required this.frameWidth,
+    required Animation<double> animation,
     this.frameHeight,
-    @required Animation<double> animation,
-  }): super(key: key, listenable: animation);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -16,14 +16,17 @@ ui.Path extractPartialPath(ui.Path path, double start, double end) {
   final endPos = end * totalLength;
   var l = 0.0;
   for (var m in metrics) {
-    final localStartPos = (startPos - l).clamp(0.0, m.length);
-    final localEndPos = (endPos - l).clamp(0.0, m.length);
+    final num localStartPos = (startPos - l).clamp(0.0, m.length);
+    final num localEndPos = (endPos - l).clamp(0.0, m.length);
 
-    if (localStartPos < localEndPos)
-      result.addPath(m.extractPath(localStartPos, localEndPos), ui.Offset.zero);
+    if (localStartPos < localEndPos) {
+      result.addPath(
+        m.extractPath(localStartPos as double, localEndPos as double),
+        ui.Offset.zero,
+      );
+    }
     l += m.length;
   }
 
   return result;
 }
-
